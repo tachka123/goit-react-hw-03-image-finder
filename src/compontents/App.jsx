@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import dotEnv from 'dotenv';
 import SearchBar from './ImgFinder/Searchbar/SearchBar';
 import ImageGallery from './ImgFinder/ImageGallery/ImageGallery';
 import Loader from './ImgFinder/SetLoader/SetLoader';
@@ -12,8 +13,6 @@ class App extends Component {
     imageList: [],
     itemToFind: '',
   };
-
-  componentDidMount() {}
 
   fetchItems = async () => {
     await this.setState({ Loading: true });
@@ -36,12 +35,13 @@ class App extends Component {
   };
 
   onLoadMore = async () => {
+    const { scrollHeight } = document.documentElement;
     this.setState(prev => {
       return { page: (prev.page += 1) };
     });
     await this.fetchItems();
     window.scrollTo({
-      top: document.documentElement.scrollHeight,
+      top: scrollHeight,
       behavior: 'smooth',
     });
   };
