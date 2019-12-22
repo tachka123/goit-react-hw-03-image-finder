@@ -1,12 +1,17 @@
-// import React from 'react';
-// import style from './Button.module.className';
+import React from 'react';
+import T from 'prop-types';
+import style from './Button.module.css';
 
-// const Button = () => {
-//   return (
-//     <button type='submit' className={SearchForm - button}>
-//       <span className={SearchForm - button - label}>Search</span>
-//     </button>
-//   );
-// };
+const Button = ({ onLoadMore }) => {
+  return (
+    <button onClick={onLoadMore} type="button" className={style.Button}>
+      <span className={style.ButtonLabel}>Search</span>
+    </button>
+  );
+};
 
-// export default Button;
+Button.propTypes = {
+  onLoadMore: T.func.isRequired,
+};
+
+export default Button;
