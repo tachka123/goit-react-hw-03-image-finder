@@ -25,11 +25,10 @@ class ImageGallery extends Component {
     window.removeEventListener('keydown', this.onCloseModal);
   }
 
-  onOpenModal = e => {
+  onOpenModal = async e => {
     if (e.target === e.currentTarget) return;
     const { nodeValue } = e.target.parentNode.attributes.large;
-    this.setState({ large: nodeValue });
-    this.setState({ IsModalOpen: true });
+    this.setState({ large: nodeValue, IsModalOpen: true });
   };
 
   onCloseModal = e => {
