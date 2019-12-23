@@ -24,14 +24,16 @@ class App extends Component {
       } = await axios.get(
         `https://pixabay.com/api/?q=${itemToFind}&page=${page}&key=14125150-f318113a737f32f93c3727cb2&image_type=photo&orientation=horizontal&per_page=12`,
       );
-      if (page > 1) {
+      if (hits.length === 0) {
+        PNotify.info('No matches found');
+      } else if (page > 1) {
         this.setState(prev => {
           return {
             imageList: [...prev.imageList, ...hits],
           };
         });
       } else {
-        await this.setState({ imageList: hits });
+        this.setState({ imageList: hits });
       }
     } catch {
       PNotify.info('Ooops! Something went wrong, try again.');
