@@ -53,12 +53,14 @@ class App extends Component {
     });
   };
 
-  onSubmit = async itemToFind => {
-    if (!itemToFind) {
+  onSubmit = async item => {
+    const { itemToFind } = this.state;
+    if (!item) {
       PNotify.info('Search input is empty! Please fill it');
       return;
     }
-    await this.setState({ itemToFind, page: 1, imageList: [] });
+    if (itemToFind === item) return;
+    await this.setState({ itemToFind: item, page: 1, imageList: [] });
     this.fetchItems();
   };
 
